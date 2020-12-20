@@ -56,3 +56,6 @@ resources:
 
 step5: initialise your local git folder using below command
 git init
+git add .
+git status (to track what files have not been committed yet)
+git commit
