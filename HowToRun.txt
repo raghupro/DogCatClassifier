@@ -1,0 +1,58 @@
+Steps to deploy web application in Heroku Cloud
+
+step1: main file name should be app.py
+step2: our flask instance name should be app
+step3: create a new file, name it as Procfile without any extension
+step4: we need to mention the commands in Procfile which will be used by cloud instance at the time of deployment
+
+Initialising the local git
+step5: git init
+step6: git add .
+step7: git commit -m "Initial commit"
+
+Create heroku app
+step8: heroku login
+step9: heroku create
+
+Push application from local git to heroku app in cloud
+step10: git remove -v
+step11: git push origin master
+
+==================================================================================================================
+
+Steps to deploy web application in AWS Elastic Beanstalk
+
+step1: your main python filename should be application.py
+step2: your flask object name that we defined in application.py should also be application
+step3: create a folder .ebignore (this will hold the name of the files that need not be pushed on to the cloud)
+step4: create a requirements.txt file (pip freeze > requirements.txt)
+step5: create a folder in your application and name it as .ebextensions
+step6: insider .ebextensions we have to create a file and name it python.config
+step7: in python.config we are supposed to mention the below commands
+        option_settings:
+            "aws:elasticbeanstalk:container:python": WSGIPath:application:application
+
+==================================================================================================================
+
+Steps to deploy web app to GCP
+
+step1: your main python file name should be main.py
+step2: your flask object name, which we have defined in main.py should also be the application.
+step3: create a new file and name it app.yaml (this will have configuration info)
+step4: add this below content in app.yaml
+runtime: python
+env: flex
+entrypoint: gunicorn -b :$PORT main:application
+
+runtime_config:
+  python_version: 3
+
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
+
+step5: initialise your local git folder using below command
+git init
